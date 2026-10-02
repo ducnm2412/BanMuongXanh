@@ -1,10 +1,13 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 export default function HeroVideo({ src, poster }) {
   const ref = useRef(null)
   const [playing, setPlaying] = useState(false)
+  // Video chỉ hiện ra khi đã có khung hình đầu tiên; trước đó ảnh poster là nội dung LCP
+  const [started, setStarted] = useState(false)
 
   useEffect(() => {
     const video = ref.current
@@ -29,11 +32,20 @@ export default function HeroVideo({ src, poster }) {
 
   return (
     <>
+      <Image
+        src={poster}
+        alt=""
+        fill
+        preload
+        fetchPriority="high"
+        sizes="100vw"
+        className="hero__media"
+      />
       <video
         ref={ref}
-        className="hero__media"
+        className={`hero__media hero__video${started ? ' is-started' : ''}`}
         src={src}
-        poster={poster}
+        onPlaying={() => setStarted(true)}
         muted
         loop
         playsInline

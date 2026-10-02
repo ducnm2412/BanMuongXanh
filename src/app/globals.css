@@ -7,6 +7,8 @@
   --forest-deep: #13281c;
   --ochre: #b5772a;
   --ochre-dark: #8f5a19;
+  /* Nền nút: đủ tương phản 4.8:1 với chữ trắng (WCAG AA) */
+  --ochre-button: #9e6520;
   --brocade-red: #9b3325;
   --ink: #1c2a21;
   --muted: #56645a;
@@ -20,7 +22,7 @@
   --step-3: clamp(1.9rem, 3.4vw, 2.5rem);
   --step-4: clamp(2.6rem, 7vw, 5.4rem);
 
-  --space-section: clamp(4rem, 9vw, 7rem);
+  --space-section: clamp(2.75rem, 6vw, 4.5rem);
   --gutter: 24px;
   --radius-img: 4px;
   --radius-card: 10px;
@@ -127,7 +129,7 @@ iframe {
 }
 
 .btn--ochre {
-  background: var(--ochre);
+  background: var(--ochre-button);
   color: #fff;
 }
 .btn--ochre:hover {
@@ -286,6 +288,15 @@ iframe {
   object-fit: cover;
 }
 
+.hero__video {
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.hero__video.is-started {
+  opacity: 1;
+}
+
 .hero__shade {
   position: absolute;
   inset: 0;
@@ -418,7 +429,7 @@ iframe {
 }
 
 .subhead {
-  margin-top: 4rem;
+  margin-top: 3rem;
   font-size: var(--step-2);
   color: var(--forest);
 }
@@ -639,14 +650,17 @@ iframe {
 
 .plan__price {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
   font-variant-numeric: lining-nums;
   line-height: 1.1;
   color: var(--forest);
 }
 
-.plan__price span {
+.plan__amount {
   white-space: nowrap;
+}
+
+.plan__unit {
   font-family: var(--font-body);
   font-size: var(--step-0);
   color: var(--muted);
@@ -671,7 +685,7 @@ iframe {
   color: #fff;
 }
 
-.plan--featured .plan__price span,
+.plan--featured .plan__unit,
 .plan--featured .plan__fit {
   color: rgba(248, 246, 238, 0.75);
 }

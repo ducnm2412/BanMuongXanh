@@ -124,7 +124,7 @@ export default function Home() {
         {/* Lịch trình */}
         <section id="lich-trinh" className="section section--paper">
           <div className="container">
-            <h2 className="section__title">Trải nghiệm trọn vẹn trong một ngày</h2>
+            <h2 className="section__title">Trải nghiệm trọn&nbsp;vẹn trong một ngày</h2>
             <p className="section__lede">Lịch trình tham khảo của tour 1 ngày, có thể điều chỉnh theo đoàn.</p>
             <ol className="timeline">
               {ITINERARY.map((step) => (
@@ -150,8 +150,9 @@ export default function Home() {
                 <article key={plan.id} className={`plan${plan.featured ? ' plan--featured' : ''}`}>
                   <h3 className="plan__name">{plan.name}</h3>
                   <p className="plan__price">
-                    {plan.price}
-                    <span> / người</span>
+                    <span className="plan__amount">{plan.price}</span>
+                    {' '}
+                    <span className="plan__unit">/&nbsp;người</span>
                   </p>
                   <p className="plan__fit">{plan.fit}</p>
                   <ul className="ticks">
