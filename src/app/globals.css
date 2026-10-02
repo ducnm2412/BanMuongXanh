@@ -57,7 +57,6 @@ h3,
 h4 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-variation-settings: 'SOFT' 50;
   line-height: 1.15;
   margin: 0;
   text-wrap: balance;
@@ -317,7 +316,6 @@ iframe {
   max-width: none;
   font-size: var(--step-4);
   font-weight: 500;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
   line-height: 1;
   letter-spacing: -0.015em;
 }

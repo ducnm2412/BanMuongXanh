@@ -7,11 +7,19 @@ export default function SiteHeader() {
   const [solid, setSolid] = useState(false)
   const [open, setOpen] = useState(false)
 
+  // Theo dõi một mốc 40px ở đầu trang thay vì đọc scrollY mỗi lần cuộn
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > 40)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const sentinel = document.createElement('div')
+    sentinel.setAttribute('aria-hidden', 'true')
+    sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:40px;pointer-events:none'
+    document.body.prepend(sentinel)
+
+    const observer = new IntersectionObserver(([entry]) => setSolid(!entry.isIntersecting))
+    observer.observe(sentinel)
+    return () => {
+      observer.disconnect()
+      sentinel.remove()
+    }
   }, [])
 
   const close = () => setOpen(false)

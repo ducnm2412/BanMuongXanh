@@ -3,8 +3,8 @@ import './globals.css'
 
 const display = Fraunces({
   subsets: ['latin', 'vietnamese'],
+  weight: ['500', '600'],
   variable: '--font-display',
-  axes: ['opsz', 'SOFT'],
   display: 'swap',
 })
 
