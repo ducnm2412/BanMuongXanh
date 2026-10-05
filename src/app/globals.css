@@ -973,43 +973,73 @@ iframe {
   }
 }
 
-/* ---------- Dành cho ai ---------- */
+/* ---------- Dành cho ai: tiêu đề đứng yên bên trái, các hàng chạy bên phải ---------- */
 .audience {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 2.25rem;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  max-width: 1280px;
 }
 
-.audience li {
-  padding: 1.4rem 1.5rem 1.6rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-top: 3px solid var(--leaf-bright);
-  border-radius: 0 0 var(--radius-card) var(--radius-card);
-  background: rgba(255, 255, 255, 0.07);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+.audience .title {
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
 }
 
-.audience h3 {
-  font-size: 1.125rem;
-  text-transform: none;
-}
-
-.audience p {
-  margin-top: 0.45rem;
+.audience .lede {
+  margin-top: 0.5rem;
   font-size: 0.9375rem;
-  line-height: 1.55;
 }
 
-@media (max-width: 1000px) {
+/* Tiêu đề bám dưới header trong lúc cuộn qua danh sách */
+.audience__head {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 120px;
+}
+
+.audience__row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.5rem 2rem;
+  align-items: baseline;
+  padding: clamp(0.8rem, 1.4vw, 1.1rem) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.audience__row:last-child {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.audience__row h3 {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  text-transform: none;
+  transition: color 0.25s ease;
+}
+
+.audience__row:hover h3 {
+  color: var(--rice);
+}
+
+.audience__row p {
+  color: var(--white);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
   .audience {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .audience__head {
+    position: static;
   }
 }
 
 @media (max-width: 520px) {
-  .audience {
+  .audience__row {
     grid-template-columns: 1fr;
   }
 }
@@ -1127,14 +1157,55 @@ iframe {
   line-height: 1.55;
 }
 
+/* Màn hình hẹp: mỗi bước là một hàng ngang (số bên trái, chữ bên phải), nối bằng vạch dọc */
 @media (max-width: 760px) {
   .steps {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
+    gap: 1.1rem;
+    margin-top: 1.5rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    column-gap: 0.9rem;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  .step__num {
+    grid-row: 1 / span 2;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    font-size: 1.0625rem;
+  }
+
+  .step h3 {
+    align-self: end;
+    font-size: 1rem;
+  }
+
+  .step p {
+    max-width: none;
+    margin: 0.15rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 
   .step + .step::before {
     display: none;
+  }
+
+  /* Vạch dọc chạy từ dưới số của bước này xuống tới số của bước kế tiếp */
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 44px;
+    bottom: calc(-1.1rem + 4px);
+    left: 19px;
+    width: 2px;
+    background: rgba(143, 208, 90, 0.6);
   }
 }
 

@@ -84,13 +84,16 @@ export default function Home() {
 
         {/* Dành cho ai */}
         <section className="block">
-          <div className="container">
-            <h2 className="title title--center" data-reveal>
-              <span className="title__top">Chuyến đi này</span> dành cho ai
-            </h2>
-            <ul className="audience">
+          <div className="container audience">
+            <div className="audience__head" data-reveal="left">
+              <h2 className="title">
+                <span className="title__top">Chuyến đi này</span> dành cho ai
+              </h2>
+              <p className="lede">Đi mấy người cũng có chương trình phù hợp.</p>
+            </div>
+            <ul className="audience__list">
               {AUDIENCE.map((item, i) => (
-                <li key={item.title} data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
+                <li key={item.title} className="audience__row" data-reveal="right" style={{ '--reveal-delay': `${i * 110}ms` }}>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </li>
