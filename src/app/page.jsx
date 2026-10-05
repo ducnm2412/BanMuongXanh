@@ -1,14 +1,19 @@
 import Image from 'next/image'
-import Brocade from '@/components/Brocade'
-import HeroVideo from '@/components/HeroVideo'
+import Gallery from '@/components/Gallery'
 import LeadForm from '@/components/LeadForm'
+import ScrollReveal from '@/components/ScrollReveal'
 import SiteHeader from '@/components/SiteHeader'
+import YouTubeEmbed from '@/components/YouTubeEmbed'
 import {
   ABOUT_POINTS,
+  ACTIVITIES,
+  AUDIENCE,
+  BOOKING_STEPS,
   CONTACT,
   FAQ,
   GALLERY,
   GROUP_FITS,
+  HERO_IMAGE,
   HIGHLIGHTS,
   IMG,
   INCLUDED,
@@ -19,64 +24,104 @@ import {
 } from '@/lib/content'
 
 const mapsSearch = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.mapsQuery)}`
-const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(CONTACT.mapsQuery)}&output=embed`
 
 export default function Home() {
   return (
     <>
       <SiteHeader />
+      <ScrollReveal />
 
       <main id="top">
         {/* Hero */}
         <section className="hero">
-          <HeroVideo src="/videos/welcome.mp4" poster={IMG.poolPalms} />
-          <div className="hero__shade" aria-hidden="true" />
+          <div className="hero__frame">
+            <Image
+              src={HERO_IMAGE}
+              alt=""
+              fill
+              preload
+              fetchPriority="high"
+              sizes="100vw"
+              className="hero__media"
+            />
+            <div className="hero__shade" aria-hidden="true" />
 
-          <div className="container hero__content">
-            <p className="hero__place">Lương Sơn, Phú Thọ</p>
-            <h1 className="hero__title">
-              <span>Tour khám phá</span> <span>Bản Mường Xanh</span>
-            </h1>
-            <p className="hero__lede">
-              Rời phố thị một ngày. Bơi giữa đồi cây, chơi cùng đồng đội, ăn cơm Mường và nhảy sạp
-              với người trong bản.
-            </p>
-            <div className="hero__actions">
-              <a href="#dang-ky" className="btn btn--ochre">
-                Đặt tour ngay
-              </a>
-              <a href="#lich-trinh" className="btn btn--ghost">
-                Xem lịch trình
-              </a>
+            <div className="hero__content">
+              <p className="hero__place">Lương Sơn, Phú Thọ</p>
+              <h1 className="hero__title">
+                <span className="hero__script">Hành trình khám phá</span>{' '}
+                <span className="hero__name">Bản Mường Xanh</span>
+              </h1>
+              <p className="hero__lede">
+                Rời phố thị một ngày. Bơi giữa đồi cây, chơi cùng đồng đội, ăn cơm Mường và nhảy
+                sạp với người trong bản.
+              </p>
             </div>
           </div>
-
-          <div className="hero__facts">
-            <ul className="container">
-              <li>
-                <strong>42 km</strong> từ Hà Nội
-              </li>
-              <li>
-                <strong>Khoảng 1 giờ</strong> đi xe
-              </li>
-              <li>
-                <strong>Mở cửa</strong> {CONTACT.hours}
-              </li>
-            </ul>
-          </div>
-          <Brocade id="hero" className="hero__brocade" />
         </section>
 
         {/* Điểm nổi bật */}
-        <section id="trai-nghiem" className="section section--paper">
+        <section id="trai-nghiem" className="block">
           <div className="container">
-            <h2 className="section__title">Có gì ở Bản Mường Xanh</h2>
-            <ul className="highlights">
-              {HIGHLIGHTS.map((item) => (
-                <li key={item.title} className="highlight">
-                  <div className="highlight__img">
-                    <Image src={item.image} alt="" fill sizes="(max-width: 720px) 50vw, 280px" />
-                  </div>
+            <div>
+              <h2 className="title title--center" data-reveal>
+                <span className="title__top">Có gì ở</span> Bản Mường Xanh
+              </h2>
+              <ul className="highlights">
+                {HIGHLIGHTS.map((item, i) => (
+                  <li key={item.title} className="highlight" data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
+                    <div className="highlight__img">
+                      <Image src={item.image} alt="" fill sizes="148px" />
+                    </div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Giới thiệu */}
+        <section className="block">
+          <div className="about">
+            <Image
+              src={IMG.poolCrowd}
+              alt="Khách bơi trong bể giữa đồi cây"
+              fill
+              sizes="100vw"
+              className="about__bg"
+            />
+            <div className="about__shade" aria-hidden="true" />
+            <div className="container">
+              <div className="about__text" data-reveal="left">
+                <h2 className="title">
+                  <span className="title__top">Một chuyến đi,</span> nhiều trải nghiệm đáng nhớ
+                </h2>
+                <p>
+                  Bản Mường Xanh là khu trải nghiệm ở Lương Sơn, cách trung tâm Hà Nội khoảng 42 km.
+                  Một ngày ở đây đủ để cả đoàn bơi lội, chơi vận động, ăn trưa món Mường và xem múa
+                  sạp.
+                </p>
+                <ul className="ticks">
+                  {ABOUT_POINTS.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Dành cho ai */}
+        <section className="block">
+          <div className="container">
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Chuyến đi này</span> dành cho ai
+            </h2>
+            <ul className="audience">
+              {AUDIENCE.map((item, i) => (
+                <li key={item.title} data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </li>
@@ -85,69 +130,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Giới thiệu */}
-        <section className="section section--sage">
-          <div className="container about">
-            <div className="about__collage">
-              <div className="about__img about__img--main">
-                <Image
-                  src={IMG.poolSign}
-                  alt="Bể bơi ngay dưới biển chữ Bản Mường Xanh"
-                  fill
-                  sizes="(max-width: 860px) 90vw, 520px"
-                />
-              </div>
-              <div className="about__img about__img--inset">
-                <Image
-                  src={IMG.cycling}
-                  alt="Học sinh đạp xe trên lối đi trong bản"
-                  fill
-                  sizes="(max-width: 860px) 45vw, 260px"
-                />
-              </div>
-            </div>
-            <div className="about__text">
-              <h2 className="section__title">Một chuyến đi, nhiều trải nghiệm đáng nhớ</h2>
-              <p>
-                Bản Mường Xanh là khu trải nghiệm ở Lương Sơn, cách trung tâm Hà Nội khoảng 42 km.
-                Một ngày ở đây đủ để cả đoàn bơi lội, chơi vận động, ăn trưa món Mường và xem múa sạp.
-              </p>
-              <ul className="ticks">
-                {ABOUT_POINTS.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
         {/* Lịch trình */}
-        <section id="lich-trinh" className="section section--paper">
+        <section id="lich-trinh" className="block">
+          <span className="deco deco--leaves" aria-hidden="true" />
           <div className="container">
-            <h2 className="section__title">Trải nghiệm trọn&nbsp;vẹn trong một ngày</h2>
-            <p className="section__lede">Lịch trình tham khảo của tour 1 ngày, có thể điều chỉnh theo đoàn.</p>
-            <ol className="timeline">
-              {ITINERARY.map((step) => (
-                <li key={step.time} className="timeline__step">
-                  <time className="timeline__time">{step.time}</time>
-                  <h3>{step.title}</h3>
-                  <p>{step.text}</p>
-                </li>
-              ))}
-            </ol>
-            <a href="#dang-ky" className="btn btn--forest">
-              Đặt tour theo lịch trình này
-            </a>
+            <div className="route">
+              <p className="route__label" data-reveal>Tour 1 ngày</p>
+              <div>
+                <h2 className="title" data-reveal>
+                  <span className="title__top">Trải nghiệm trọn&nbsp;vẹn</span> trong một ngày
+                </h2>
+                <p className="lede">Lịch trình tham khảo, có thể điều chỉnh theo đoàn.</p>
+                <ol className="route__steps">
+                  {ITINERARY.map((step, i) => (
+                    <li key={step.time} className="route__step" data-reveal style={{ '--reveal-delay': `${(i % 2) * 90}ms` }}>
+                      <time className="route__time">{step.time}</time>
+                      <div className="route__body">
+                        <h3>{step.title}</h3>
+                        <p>{step.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <a href="#dang-ky" className="btn btn--rice">
+                  Đặt tour theo lịch trình này
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Bảng giá */}
-        <section id="bang-gia" className="section section--sage">
+        <section id="bang-gia" className="block">
+          <span className="deco deco--birds" aria-hidden="true" />
+          <span className="deco deco--vine deco--flip deco--low" aria-hidden="true" />
           <div className="container">
-            <h2 className="section__title">Chọn chuyến đi phù hợp</h2>
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Bảng giá tour</span> Chọn chuyến đi phù hợp
+            </h2>
             <div className="plans">
-              {PLANS.map((plan) => (
-                <article key={plan.id} className={`plan${plan.featured ? ' plan--featured' : ''}`}>
+              {PLANS.map((plan, i) => (
+                <article
+                  key={plan.id}
+                  className={`plan${plan.featured ? ' plan--featured' : ''}`}
+                  data-reveal
+                  style={{ '--reveal-delay': `${i * 110}ms` }}
+                >
                   <h3 className="plan__name">{plan.name}</h3>
                   <p className="plan__price">
                     <span className="plan__amount">{plan.price}</span>
@@ -160,7 +188,7 @@ export default function Home() {
                       <li key={feature}>{feature}</li>
                     ))}
                   </ul>
-                  <a href="#dang-ky" className={`btn ${plan.featured ? 'btn--ochre' : 'btn--forest'}`}>
+                  <a href="#dang-ky" className={`btn ${plan.featured ? 'btn--rice' : 'btn--dark'}`}>
                     {plan.cta}
                   </a>
                 </article>
@@ -172,10 +200,10 @@ export default function Home() {
               ))}
             </ul>
 
-            <h3 className="subhead">Tour 1 ngày đã gồm</h3>
+            <h3 className="subtitle">Tour 1 ngày đã gồm</h3>
             <ul className="included">
-              {INCLUDED.map((item) => (
-                <li key={item.title}>
+              {INCLUDED.map((item, i) => (
+                <li key={item.title} data-reveal style={{ '--reveal-delay': `${i * 80}ms` }}>
                   <h4>{item.title}</h4>
                   <p>{item.text}</p>
                 </li>
@@ -185,23 +213,39 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Hình ảnh */}
-        <section id="hinh-anh" className="section section--paper">
+        {/* Hoạt động & tiện ích */}
+        <section id="hoat-dong" className="block">
           <div className="container">
-            <h2 className="section__title">Hình ảnh thực tế tại Bản Mường Xanh</h2>
-            <ul className="gallery">
-              {GALLERY.map((photo) => (
-                <li key={photo.src} className={`gallery__item${photo.size ? ` gallery__item--${photo.size}` : ''}`}>
-                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 720px) 50vw, 400px" />
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Hoạt động và tiện ích</span> Chơi gì ở bản
+            </h2>
+            <ul className="activities">
+              {ACTIVITIES.map((item, i) => (
+                <li key={item.title} className="activity" data-reveal style={{ '--reveal-delay': `${(i % 3) * 90}ms` }}>
+                  <Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 33vw" />
+                  <div className="activity__text">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
 
-            <h3 className="subhead">Xem qua video</h3>
+        {/* Hình ảnh */}
+        <section id="hinh-anh" className="block">
+          <div className="container">
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Hình ảnh thực tế tại</span> Bản Mường Xanh
+            </h2>
+            <Gallery photos={GALLERY} />
+
+            <h3 className="subtitle">Xem qua video</h3>
             <ul className="videos">
-              {VIDEOS.map((video) => (
-                <li key={video.src}>
-                  <video src={video.src} poster={video.poster} controls preload="none" playsInline />
+              {VIDEOS.map((video, i) => (
+                <li key={video.youtube} data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
+                  <YouTubeEmbed url={video.youtube} title={video.title} poster={video.poster} />
                   <p>{video.title}</p>
                 </li>
               ))}
@@ -210,72 +254,46 @@ export default function Home() {
         </section>
 
         {/* Team Building */}
-        <section className="teams">
-          <Brocade id="teams" />
-          <div className="container teams__inner">
-            <div className="teams__text">
-              <h2 className="section__title">Đi cùng đồng đội, gắn kết cùng nhau</h2>
-              <p>
-                Bản đã đón nhiều đoàn trường học và doanh nghiệp, có đêm gala lên tới 1.500 học sinh.
-                Chương trình được dựng theo số người và mục tiêu của từng đoàn.
-              </p>
-              <ul className="ticks ticks--two">
-                {GROUP_FITS.map((fit) => (
-                  <li key={fit}>{fit}</li>
-                ))}
-              </ul>
-              <a href="#dang-ky" className="btn btn--ochre">
-                Nhận báo giá cho đoàn
-              </a>
-            </div>
-            <div className="teams__img">
+        <section className="block">
+          <div className="container">
+            <div className="slide slide--pad teams">
               <Image
                 src={IMG.tugOfWar}
                 alt="Hai đội học sinh kéo co trên bãi đất trong bản"
                 fill
-                sizes="(max-width: 860px) 100vw, 560px"
+                sizes="(max-width: 1760px) 90vw, 1600px"
+                className="teams__bg"
               />
-            </div>
-          </div>
-        </section>
-
-        {/* Địa điểm */}
-        <section className="section section--paper">
-          <div className="container location">
-            <div>
-              <h2 className="section__title">Đường đến Bản Mường Xanh</h2>
-              <dl className="facts">
-                <dt>Địa chỉ</dt>
-                <dd>{CONTACT.address}</dd>
-                <dt>Khoảng cách</dt>
-                <dd>{CONTACT.distance}</dd>
-                <dt>Di chuyển</dt>
-                <dd>{CONTACT.travelTime}</dd>
-                <dt>Giờ mở cửa</dt>
-                <dd>{CONTACT.hours}</dd>
-              </dl>
-              <a href={mapsSearch} className="btn btn--forest" target="_blank" rel="noopener noreferrer">
-                Mở chỉ đường trên Google Maps
-              </a>
-            </div>
-            <div className="location__map">
-              <iframe
-                title="Bản đồ đường đến Bản Mường Xanh"
-                src={mapsEmbed}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <div className="teams__shade" aria-hidden="true" />
+              <div className="teams__text" data-reveal="left">
+                <h2 className="teams__title">
+                  <span className="title__top">Gắn kết cùng nhau</span> Đi cùng đồng đội
+                </h2>
+                <p>
+                  Bản đã đón nhiều đoàn trường học và doanh nghiệp, có đêm gala lên tới 1.500 học
+                  sinh. Chương trình được dựng theo số người và mục tiêu của từng đoàn.
+                </p>
+                <ul className="ticks ticks--two">
+                  {GROUP_FITS.map((fit) => (
+                    <li key={fit}>{fit}</li>
+                  ))}
+                </ul>
+                <a href="#dang-ky" className="btn btn--rice">
+                  Nhận báo giá cho đoàn
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Hỏi đáp */}
-        <section id="hoi-dap" className="section section--sage">
+        <section id="hoi-dap" className="block">
+          <span className="deco deco--leaves deco--flip" aria-hidden="true" />
           <div className="container">
-            <h2 className="section__title">Câu hỏi thường gặp</h2>
+            <h2 className="title title--center" data-reveal>Câu hỏi thường gặp</h2>
             <div className="faq">
-              {FAQ.map((item) => (
-                <details key={item.q} className="faq__item">
+              {FAQ.map((item, i) => (
+                <details key={item.q} className="faq__item" data-reveal style={{ '--reveal-delay': `${(i % 2) * 90}ms` }}>
                   <summary>{item.q}</summary>
                   <p>{item.a}</p>
                 </details>
@@ -284,40 +302,68 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Quy trình đặt tour */}
+        <section className="block">
+          <div className="container">
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Đặt tour</span> trong 3 bước
+            </h2>
+            <ol className="steps">
+              {BOOKING_STEPS.map((step, i) => (
+                <li key={step.title} className="step" data-reveal style={{ '--reveal-delay': `${i * 120}ms` }}>
+                  <span className="step__num" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
         {/* Đăng ký */}
-        <section id="dang-ky" className="signup">
-          <Image src={IMG.muongDance} alt="" fill sizes="100vw" className="signup__bg" />
-          <div className="container signup__inner">
-            <div className="signup__text">
-              <h2 className="section__title">Đăng ký nhận tư vấn và báo giá</h2>
-              <p>Để lại thông tin, nhân viên sẽ gọi lại để chốt lịch và báo giá cho đoàn của bạn.</p>
-              <p className="signup__label">Hotline / Zalo</p>
-              <ul className="signup__phones">
-                {CONTACT.phones.map((phone) => (
-                  <li key={phone.tel}>
-                    <a href={`tel:${phone.tel}`}>{phone.label}</a>
-                  </li>
-                ))}
-              </ul>
-              <a href={CONTACT.zalo} className="btn btn--ghost" target="_blank" rel="noopener noreferrer">
-                Nhắn Zalo
-              </a>
+        <section id="dang-ky" className="block">
+          <span className="deco deco--vine" aria-hidden="true" />
+          <div className="container">
+            <div className="signup">
+              <div className="signup__text" data-reveal="left">
+                <h2 className="title">
+                  <span className="title__top">Đăng ký nhận</span> tư vấn và báo giá
+                </h2>
+                <p>Để lại thông tin, nhân viên sẽ gọi lại để chốt lịch và báo giá cho đoàn của bạn.</p>
+                <p className="signup__label">Hotline / Zalo</p>
+                <ul className="signup__phones">
+                  {CONTACT.phones.map((phone) => (
+                    <li key={phone.tel}>
+                      <a href={`tel:${phone.tel}`}>{phone.label}</a>
+                    </li>
+                  ))}
+                </ul>
+                <a href={CONTACT.zalo} className="btn btn--line signup__btn" target="_blank" rel="noopener noreferrer">
+                  Nhắn Zalo
+                </a>
+              </div>
+              <div data-reveal="right">
+                <LeadForm />
+              </div>
             </div>
-            <LeadForm />
           </div>
         </section>
       </main>
 
       <footer className="footer">
-        <Brocade id="footer" />
         <div className="container footer__inner">
           <div>
+            <Image src="/logo-mark.png" alt="" width={100} height={72} className="footer__logo" />
             <p className="footer__brand">Bản Mường Xanh</p>
-            <p>Trải nghiệm, nghỉ dưỡng và Team Building cách Hà Nội 42 km.</p>
+            <p>Trải nghiệm, nghỉ dưỡng và Team Building gần Hà Nội.</p>
           </div>
           <div>
             <p className="footer__heading">Liên hệ</p>
             <p>{CONTACT.address}</p>
+            <p>{CONTACT.travelTime} từ Hà Nội</p>
+            <p>Mở cửa {CONTACT.hours}</p>
             <p>
               Hotline:{' '}
               {CONTACT.phones.map((phone, i) => (
@@ -327,7 +373,18 @@ export default function Home() {
                 </span>
               ))}
             </p>
-            <p>Mở cửa {CONTACT.hours}</p>
+            <a href={mapsSearch} className="btn btn--line footer__btn" target="_blank" rel="noopener noreferrer">
+              Mở chỉ đường
+            </a>
+          </div>
+          <div className="footer__map">
+            <iframe
+              title="Bản đồ đường đến Bản Mường Xanh"
+              src={CONTACT.mapsEmbed}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
           </div>
         </div>
         <p className="container footer__copy">© {new Date().getFullYear()} Bản Mường Xanh</p>

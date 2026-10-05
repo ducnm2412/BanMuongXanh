@@ -34,7 +34,7 @@ export default function LeadForm() {
       <div className="lead-form lead-form--done" role="status">
         <h3>Đã gửi thông tin</h3>
         <p>Nhân viên tư vấn sẽ gọi lại theo số điện thoại bạn để lại.</p>
-        <button type="button" className="btn btn--outline-dark" onClick={() => setStatus('idle')}>
+        <button type="button" className="btn btn--line-dark" onClick={() => setStatus('idle')}>
           Gửi yêu cầu khác
         </button>
       </div>
@@ -77,7 +77,7 @@ export default function LeadForm() {
       </div>
       <div className="field field--full">
         <label htmlFor="f-note">Ghi chú thêm</label>
-        <textarea id="f-note" name="note" rows={3} placeholder="Ví dụ: đoàn có 10 trẻ em, cần xe đón ở Cầu Giấy" />
+        <textarea id="f-note" name="note" rows={2} placeholder="Ví dụ: đoàn có 10 trẻ em, cần xe đón ở Cầu Giấy" />
       </div>
 
       {error && (
@@ -86,7 +86,7 @@ export default function LeadForm() {
         </p>
       )}
 
-      <button type="submit" className="btn btn--ochre field--full" disabled={status === 'sending'}>
+      <button type="submit" className="btn btn--rice field--full" disabled={status === 'sending'}>
         {status === 'sending' ? 'Đang gửi…' : 'Nhận tư vấn và báo giá'}
       </button>
     </form>

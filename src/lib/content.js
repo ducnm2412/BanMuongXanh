@@ -31,15 +31,17 @@ export const IMG = {
 export const CONTACT = {
   name: 'Bản Mường Xanh',
   address: 'Xóm Bằng Gà, xã Lương Sơn, tỉnh Phú Thọ',
-  distance: '42 km từ Hà Nội',
   travelTime: 'Khoảng 1 giờ di chuyển',
   hours: '08:00 – 18:30 hằng ngày',
   phones: [
     { label: '0339.813.773', tel: '0339813773' },
-    { label: '0981.851.651', tel: '0981851651' },
   ],
   zalo: 'https://zalo.me/0339813773',
-  mapsQuery: 'Bản Mường Xanh, Lương Sơn, Phú Thọ',
+  // Tên địa điểm trên Google Maps, dùng cho nút mở chỉ đường
+  mapsQuery: 'Khu du lịch trải nghiệm Bản Mường Xanh',
+  // Link nhúng lấy từ Google Maps (Chia sẻ > Nhúng bản đồ)
+  mapsEmbed:
+    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5884.245836531224!2d105.4560618!3d20.846601!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3134412d2d350ead%3A0xa1020841ae695523!2zS2h1IGR1IGzhu4tjaCB0cuG6o2kgbmdoaeG7h20gQuG6o24gTcaw4budbmcgWGFuaA!5e1!3m2!1svi!2s!4v1791183619728!5m2!1svi!2s',
 }
 
 export const NAV = [
@@ -115,10 +117,40 @@ export const PRICE_NOTES = [
 ]
 
 export const INCLUDED = [
-  { title: 'Xe đưa đón tại Hà Nội', text: 'Xe du lịch đón và trả khách theo lịch trình.' },
-  { title: 'Ăn trưa và vé tham quan', text: 'Một bữa trưa cùng vé vào các khu vui chơi.' },
-  { title: 'Hướng dẫn viên và bảo hiểm', text: 'Hướng dẫn viên đi cùng đoàn, bảo hiểm du lịch theo quy định.' },
-  { title: 'Gói Team Building', text: 'Quản trò, âm thanh và dụng cụ trò chơi cho cả đoàn.' },
+  { title: 'Xe đưa đón', text: 'Xe du lịch đưa đón theo lịch trình.' },
+  { title: 'Bữa ăn chính', text: '01 bữa ăn chính tại bản.' },
+  { title: 'Khu nghỉ trưa', text: 'Khu nghỉ trưa cộng đồng cho cả đoàn.' },
+  { title: 'Vé tham quan', text: 'Vé vào cổng, tham quan và vui chơi.' },
+  { title: 'Bảo hiểm du lịch', text: 'Mức 40.000.000đ/trường hợp.' },
+  { title: 'Nước uống', text: 'Nước uống trên xe.' },
+  { title: 'Hướng dẫn viên', text: 'Hướng dẫn viên tiếng Việt đi cùng đoàn.' },
+  { title: 'Quà tặng', text: 'Tặng 01 nón cho mỗi khách.' },
+  { title: 'Team Building', text: 'Âm thanh, áo đội, MC, kịch bản và đạo cụ cho đoàn từ 40 thành viên.' },
+]
+
+// Section "Dành cho ai"
+export const AUDIENCE = [
+  { title: 'Gia đình', text: 'Bể bơi, bãi cỏ và trò chơi cho trẻ; người lớn có chỗ ngồi nghỉ.' },
+  { title: 'Nhóm bạn', text: 'Đi về trong ngày, nhiều trò chơi chung và góc chụp ảnh.' },
+  { title: 'Trường học', text: 'Chuyến ngoại khóa kết hợp trải nghiệm văn hóa Mường cho học sinh.' },
+  { title: 'Công ty, tổ chức', text: 'Team Building có quản trò, gala và lửa trại theo yêu cầu.' },
+]
+
+// Section "Hoạt động & tiện ích" — mỗi mục đi kèm một ảnh thực tế
+export const ACTIVITIES = [
+  { title: 'Đạp xe quanh bản', text: 'Đạp xe trên lối đi rợp cây trong khuôn viên.', image: IMG.cycling },
+  { title: 'Đu dây giữa rừng', text: 'Trượt dây qua tán cây cho người thích cảm giác mạnh.', image: IMG.zipline },
+  { title: 'Trò chơi dân gian', text: 'Đu tre, kéo co và các trò chơi tập thể.', image: IMG.bambooSwing },
+  { title: 'Nhà hơi vận động', text: 'Vượt chướng ngại vật trên các trò chơi hơi cỡ lớn.', image: IMG.inflatableRing },
+  { title: 'Lửa trại và gala đêm', text: 'Đốt lửa trại, giao lưu văn nghệ cho đoàn ở lại buổi tối.', image: IMG.bonfire },
+  { title: 'Tô tượng, làm thủ công', text: 'Góc sáng tạo dành cho các bạn nhỏ.', image: IMG.painting },
+]
+
+// Section "Đặt tour trong 3 bước"
+export const BOOKING_STEPS = [
+  { title: 'Gửi yêu cầu', text: 'Điền form bên dưới hoặc gọi hotline, cho biết số khách và ngày dự kiến.' },
+  { title: 'Nhận tư vấn và báo giá', text: 'Nhân viên gọi lại, gợi ý chương trình và báo giá theo đoàn.' },
+  { title: 'Chốt lịch và lên đường', text: 'Xác nhận ngày đi; xe đón đoàn tại điểm hẹn ở Hà Nội.' },
 ]
 
 export const GALLERY = [
@@ -133,19 +165,24 @@ export const GALLERY = [
   { src: IMG.groupSign, alt: 'Đoàn khách chụp ảnh trước biển Nông trại vui vẻ', size: 'wide' },
 ]
 
+// Ảnh nền ở đầu trang (có hiệu ứng zoom chậm). Muốn đổi ảnh: chép file vào public/ rồi sửa đường dẫn này.
+export const HERO_IMAGE = '/hero-thung-lung.webp'
+
+// Dán link YouTube vào `youtube` (dạng nào cũng được: watch?v=..., youtu.be/..., shorts/...).
+// `poster` là ảnh bìa hiện trước khi người xem bấm phát.
 export const VIDEOS = [
   {
-    src: '/videos/trai-nghiem-1-ngay.mp4',
+    youtube: 'https://www.youtube.com/watch?v=oQElVzauFVU',
     poster: IMG.poolCrowd,
     title: 'Một ngày ở Bản Mường Xanh',
   },
   {
-    src: '/videos/gala-dinner-1500-hoc-sinh.mp4',
+    youtube: 'https://www.youtube.com/watch?v=ItZaAaJGolk',
     poster: IMG.nightParty,
     title: 'Gala dinner cùng 1.500 học sinh',
   },
   {
-    src: '/videos/chia-se-phu-huynh-hoc-sinh.mp4',
+    youtube: 'https://www.youtube.com/watch?v=osrAgyEvabg',
     poster: IMG.selfie,
     title: 'Phụ huynh và học sinh kể lại chuyến đi',
   },
@@ -165,19 +202,27 @@ export const FAQ = [
   },
   {
     q: 'Tour 1 ngày gồm những gì?',
-    a: 'Xe đưa đón tại Hà Nội, bữa trưa, vé tham quan, hướng dẫn viên, bảo hiểm du lịch và gói Team Building. Tour 2 ngày 1 đêm được tư vấn riêng theo yêu cầu của đoàn.',
+    a: 'Xe đưa đón, 01 bữa ăn chính, khu nghỉ trưa, vé tham quan và vui chơi, bảo hiểm du lịch, nước uống trên xe, hướng dẫn viên và nón tặng. Tour 2 ngày 1 đêm được tư vấn riêng theo yêu cầu của đoàn.',
   },
   {
     q: 'Đoàn công ty cần đặt trước bao lâu?',
     a: 'Thời gian đặt trước phụ thuộc vào số người và ngày đi. Hãy gọi hotline hoặc để lại thông tin ở cuối trang để được báo lịch trống.',
   },
   {
-    q: 'Bản Mường Xanh ở đâu?',
-    a: `${CONTACT.address}, cách Hà Nội khoảng 42 km, đi xe mất khoảng 1 giờ.`,
+    q: 'Đoàn bao nhiêu người thì được tổ chức Team Building?',
+    a: 'Gói Team Building (âm thanh, áo đội, MC, kịch bản và đạo cụ) áp dụng cho đoàn từ 40 thành viên.',
   },
   {
-    q: 'Có cần đặt cọc không?',
-    a: 'Chính sách đặt cọc khác nhau theo từng đoàn. Nhân viên tư vấn sẽ báo rõ khi xác nhận lịch đi.',
+    q: 'Có lưu trú qua đêm không?',
+    a: 'Có. Tour 2 ngày 1 đêm gồm một đêm ngủ lại tại bản, kèm các hoạt động buổi tối.',
+  },
+  {
+    q: 'Có hỗ trợ đoàn công ty, doanh nghiệp không?',
+    a: 'Có. Chương trình được dựng riêng theo số người và mục tiêu của đoàn; hãy để lại thông tin để nhận báo giá.',
+  },
+  {
+    q: 'Bản Mường Xanh ở đâu?',
+    a: `${CONTACT.address}, cách Hà Nội khoảng 42 km, đi xe mất khoảng 1 giờ.`,
   },
   {
     q: 'Có khu vui chơi cho trẻ nhỏ không?',

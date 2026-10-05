@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { NAV } from '@/lib/content'
 
@@ -26,8 +27,9 @@ export default function SiteHeader() {
 
   return (
     <header className={`site-header${solid || open ? ' is-solid' : ''}`}>
-      <div className="container site-header__inner">
+      <div className="site-header__inner">
         <a href="#top" className="site-header__brand" onClick={close}>
+          <Image src="/logo-mark.png" alt="" width={64} height={46} className="site-header__logo" />
           Bản Mường Xanh
         </a>
 
@@ -51,7 +53,7 @@ export default function SiteHeader() {
               </li>
             ))}
           </ul>
-          <a href="#dang-ky" className="btn btn--ochre btn--sm" onClick={close}>
+          <a href="#dang-ky" className="site-header__cta" onClick={close}>
             Nhận báo giá
           </a>
         </nav>
