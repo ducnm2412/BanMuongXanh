@@ -82,6 +82,23 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Dành cho ai */}
+        <section className="block">
+          <div className="container">
+            <h2 className="title title--center" data-reveal>
+              <span className="title__top">Chuyến đi này</span> dành cho ai
+            </h2>
+            <ul className="audience">
+              {AUDIENCE.map((item, i) => (
+                <li key={item.title} data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* Giới thiệu */}
         <section className="block">
           <div className="about">
@@ -110,23 +127,6 @@ export default function Home() {
                 </ul>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Dành cho ai */}
-        <section className="block">
-          <div className="container">
-            <h2 className="title title--center" data-reveal>
-              <span className="title__top">Chuyến đi này</span> dành cho ai
-            </h2>
-            <ul className="audience">
-              {AUDIENCE.map((item, i) => (
-                <li key={item.title} data-reveal style={{ '--reveal-delay': `${i * 90}ms` }}>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
@@ -389,6 +389,31 @@ export default function Home() {
         </div>
         <p className="container footer__copy">© {new Date().getFullYear()} Bản Mường Xanh</p>
       </footer>
+
+      {/* Nút liên hệ nhanh, luôn nổi ở góc phải dưới màn hình */}
+      <div className="quick-contact">
+        <a
+          href={CONTACT.zalo}
+          className="quick-contact__btn quick-contact__btn--zalo"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Nhắn Zalo ${CONTACT.phones[0].label}`}
+        >
+          Zalo
+        </a>
+        <a
+          href={`tel:${CONTACT.phones[0].tel}`}
+          className="quick-contact__btn quick-contact__btn--call"
+          aria-label={`Gọi điện ${CONTACT.phones[0].label}`}
+        >
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"
+            />
+          </svg>
+        </a>
+      </div>
     </>
   )
 }

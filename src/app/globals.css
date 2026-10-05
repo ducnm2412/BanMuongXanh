@@ -1824,6 +1824,80 @@ main {
   }
 }
 
+/* ---------- Nút liên hệ nhanh (Zalo, gọi điện) nổi ở góc phải dưới ---------- */
+.quick-contact {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick-contact__btn {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  font: 700 0.9375rem/1 var(--font-ui), var(--font-body), sans-serif;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.quick-contact__btn:hover {
+  transform: translateY(-3px) scale(1.05);
+}
+
+.quick-contact__btn:active {
+  transform: scale(0.96);
+}
+
+.quick-contact__btn--zalo {
+  background: #0068ff;
+  color: var(--white);
+}
+
+/* Nút gọi tỏa vòng sáng nhẹ để hút mắt */
+.quick-contact__btn--call {
+  position: relative;
+  background: var(--rice);
+  color: var(--ink);
+}
+
+.quick-contact__btn--call::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(242, 201, 76, 0.55);
+  animation: call-pulse 2.4s ease-out infinite;
+}
+
+@keyframes call-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 201, 76, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(242, 201, 76, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(242, 201, 76, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .quick-contact__btn {
+    width: 52px;
+    height: 52px;
+  }
+}
+
 /* ---------- Hiệu ứng hiện dần khi cuộn ----------
    Chỉ có tác dụng khi ScrollReveal.jsx đã gắn lớp .reveal-on lên <html>;
    không có lớp đó (JavaScript lỗi, trình duyệt cũ, tắt chuyển động) thì nội dung hiện bình thường. */
